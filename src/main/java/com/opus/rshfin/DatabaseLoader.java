@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-    private final HeaderRepository repository;
-
-    @Autowired
-    public DatabaseLoader(HeaderRepository repository) {
-        this.repository = repository;
-    }
+//    private final HeaderRepository repository;
+//
+//    @Autowired
+//    public DatabaseLoader(HeaderRepository repository) {
+//        this.repository = repository;
+//    }
 
     @Override
     public void run(String... strings) throws Exception {
