@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * The type Database loader.
+ */
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
@@ -14,6 +18,11 @@ public class DatabaseLoader implements CommandLineRunner {
 //        this.repository = repository;
 //    }
 
+    /**
+     *
+     * @param strings
+     * @throws Exception
+     */
     @Override
     public void run(String... strings) throws Exception {
 //        this.repository.save(new Header());

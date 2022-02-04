@@ -30,7 +30,7 @@ class App extends React.Component {
 		// 	.done(response => {
 		// 		this.setState({headers: response.entity._embedded.headers});
 		// 	});
-		this.loadFromServer(this.state.pageSize);
+		// this.loadFromServer(this.state.pageSize);
 	}
 
 	loadFromServer(pageSize) {
@@ -62,9 +62,9 @@ class App extends React.Component {
 			<Container className="p-3 fluid">
 				<Container className="p-5 mb-4 bg-light rounded-3">
 					<h1 className="header">RSHFIN testbench - V3</h1>
-					<HeaderList headers={this.state.headers}/>
-					{/*<ShowCard sc={this.state.headers}/>*/}
-					<ShowCard />
+					{/*<HeaderList headers={this.state.headers}/>*/}
+					{/*/!*<ShowCard sc={this.state.headers}/>*!/*/}
+					{/*<ShowCard />*/}
 				</Container>
 			</Container>
 

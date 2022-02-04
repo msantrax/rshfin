@@ -12,6 +12,7 @@ public class RshfinApplication {
 
 	public static void main(String[] args) {
 
+		log.info("Application is booting ......");
 		SpringApplication.run(RshfinApplication.class, args);
 
 	}
