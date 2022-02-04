@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.opus.isotherm;
+package com.opus.rshfin.isotherm;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )
-public @interface propertyfieldmap {
+public @interface smstate {
     
-    public String propname() default "NONE";
-    
+    public String state() default "IDLE";
+
 }

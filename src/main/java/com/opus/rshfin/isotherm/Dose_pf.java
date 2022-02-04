@@ -1,11 +1,10 @@
 
-package com.opus.isotherm;
+package com.opus.rshfin.isotherm;
 
 //import com.opus.syssupport.SMTraffic;
 //import com.opus.syssupport.VirnaPayload;
 //import com.opus.syssupport.propertylink;
 //import com.opus.syssupport.propertyfieldmap;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 //import middlestripb.MongoLink ;

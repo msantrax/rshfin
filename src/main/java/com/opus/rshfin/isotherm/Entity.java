@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.opus.isotherm;
+package com.opus.rshfin.isotherm;
 
 //import com.opus.syssupport.SMTraffic;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 //import middlestripb.EntityDescriptor;
 import org.bson.Document;
+//import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *

@@ -1,5 +1,5 @@
 
-package com.opus.isotherm;
+package com.opus.rshfin.isotherm;
 
 //import com.opus.syssupport.SMTraffic;
 //import com.opus.syssupport.VirnaPayload;
@@ -16,23 +16,29 @@ import org.bson.Document;
 import org.bson.types.ObjectId ;
 import com.mongodb.client.model.Filters ;
 
+//import javax.persistence.MappedSuperclass;
 
 //import Entities.Isotherm_pf;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.annotation.Id;
 
-
+//@MappedSuperclass
 public class Isotherm extends Entity {
 
     private static final Logger log = LoggerFactory.getLogger(Isotherm.class);
 
     private transient MongoLink mongolink;
 
+
+//    private String id;
+
     private Long suid = 0L ;
     public Long getSuid() { return suid; }
     public void setSuid(Long suid) { this.suid = suid; }
 
+    @Id
     private ObjectId _id ;
     public ObjectId get_Id() { return _id; }
     public void set_Id(ObjectId _id) { this._id = _id; }
