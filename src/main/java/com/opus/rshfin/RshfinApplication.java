@@ -12,6 +12,8 @@ public class RshfinApplication {
 
 	public static void main(String[] args) {
 
+		System.setProperty("illegal-access", "deny");
+
 		log.info("Application is booting ......");
 		SpringApplication.run(RshfinApplication.class, args);
 

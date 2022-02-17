@@ -6,14 +6,33 @@ const when = require('when');
 const client = require('./client');
 const follow = require('./follow'); // function to hop multiple links by "rel"
 
+const poly = require("@babel/polyfill");
+
+import LogRocket from 'logrocket';
+
+
 import {useState} from 'react';
+import styled from 'styled-components';
 
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import Card from 'react-bootstrap/Card';
 
+
+
+import store from './todo/store';
+import { Provider } from 'react-redux';
+
+import AddTodoForm from './todo/AddTodoForm';
+import TodoList from './todo/TodoList';
+import TotalCompleteItems from './todo/TotalCompleteItems';
+
+
+
 const root = '/api';
+
+LogRocket.init('speibq/rshfin');
 
 
 class App extends React.Component {
@@ -21,50 +40,18 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {headers: []};
-
-		this.state.pageSize = 5;
 	}
-
-	componentDidMount() {
-		// client({method: 'GET', path: '/api/headers'})
-		// 	.done(response => {
-		// 		this.setState({headers: response.entity._embedded.headers});
-		// 	});
-		// this.loadFromServer(this.state.pageSize);
-	}
-
-	loadFromServer(pageSize) {
-		follow(client, root, [ {rel: 'headers', params: {size: pageSize}}])
-			.then(headerCollection => {
-				return client({
-					method: 'GET',
-					path: headerCollection.entity._links.profile.href,
-					headers: {'Accept': 'application/schema+json'}
-				})
-				.then(schema => {
-					this.schema = schema.entity;
-					return headerCollection;
-				});
-			})
-			.done(headerCollection => {
-				this.setState({
-					headers: headerCollection.entity._embedded.headers,
-					attributes: Object.keys(this.schema.properties),
-					pageSize: pageSize,
-					links: headerCollection.entity._links});
-			});
-	}
-
 
 
 	render() {
 		return (
 			<Container className="p-3 fluid">
 				<Container className="p-5 mb-4 bg-light rounded-3">
-					<h1 className="header">RSHFIN testbench - V3</h1>
-					{/*<HeaderList headers={this.state.headers}/>*/}
-					{/*/!*<ShowCard sc={this.state.headers}/>*!/*/}
-					{/*<ShowCard />*/}
+					<h1 className="header">RSHFIN testbench - V14</h1>
+					<AddTodoForm />
+					<TodoList />
+					<TotalCompleteItems />
+
 				</Container>
 			</Container>
 
@@ -73,74 +60,19 @@ class App extends React.Component {
 }
 
 
-function ShowCard () {
-
-	const [open, setOpen] = useState(false);
-
-	return (
-		<>
-		<Button
-			onClick={() => setOpen(!open)}
-			aria-controls="example-collapse-text"
-			aria-expanded={open}
-		>
-			click
-		</Button>
-
-		<div style={{minHeight: '150px'}}>
-			<Collapse in={open} dimension="width">
-				<div id="example-collapse-text">
-					<Card body style={{width: '400px'}}>
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-						terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-						labore wes anderson cred nesciunt sapiente ea proident.
-					</Card>
-				</div>
-			</Collapse>
-		</div>
-		</>
-	);
-
-}
-
-
-class HeaderList extends React.Component{
-
-	render() {
-		const headers = this.props.headers.map(header =>
-			<Header key={header._links.self.href} header={header}/>
-		);
-		return (
-			<table>
-				<tbody>
-				<tr>
-					<th>SID</th>
-					<th>Type</th>
-					<th>Lote</th>
-				</tr>
-				{headers}
-				</tbody>
-			</table>
-		)
-	}
-}
-
-
-class Header extends React.Component{
-	render() {
-		return (
-			<tr>
-				<td>{this.props.header.sid}</td>
-				<td>{this.props.header.type}</td>
-				<td>{this.props.header.lote}</td>
-			</tr>
-		)
-	}
-}
 
 
 ReactDOM.render(
-	<App />,
+
+
+	// <App />,
+
+	<React.StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>,
+
 	document.getElementById('react')
 )
 
@@ -148,6 +80,97 @@ ReactDOM.render(
 
 
 
+
+
+
+
+
+
+// ====================================================================================================================
+
+// render() {
+// 	return (
+// 		<Container className="p-3 fluid">
+// 			<Container className="p-5 mb-4 bg-light rounded-3">
+// 				<h1 className="header">RSHFIN testbench - V7</h1>
+// 				{/*<HeaderList headers={this.state.headers}/>*/}
+// 				{/*/!*<ShowCard sc={this.state.headers}/>*!/*/}
+// 				{/*<ShowCard />*/}
+// 				{/*<Reservation />*/}
+// 				<BasicForm />
+// 			</Container>
+// 		</Container>
+//
+// 	)
+// }
+
+
+
+
+
+// class HeaderList extends React.Component{
+//
+// 	render() {
+// 		const headers = this.props.headers.map(header =>
+// 			<Header key={header._links.self.href} header={header}/>
+// 		);
+// 		return (
+// 			<table>
+// 				<tbody>
+// 				<tr>
+// 					<th>SID</th>
+// 					<th>Type</th>
+// 					<th>Lote</th>
+// 				</tr>
+// 				{headers}
+// 				</tbody>
+// 			</table>
+// 		)
+// 	}
+// }
+//
+//
+// class Header extends React.Component{
+// 	render() {
+// 		return (
+// 			<tr>
+// 				<td>{this.props.header.sid}</td>
+// 				<td>{this.props.header.type}</td>
+// 				<td>{this.props.header.lote}</td>
+// 			</tr>
+// 		)
+// 	}
+// }
+
+// componentDidMount() {
+// 	// client({method: 'GET', path: '/api/headers'})
+// 	// 	.done(response => {
+// 	// 		this.setState({headers: response.entity._embedded.headers});
+// 	// 	});
+// 	// this.loadFromServer(this.state.pageSize);
+// }
+//
+// loadFromServer(pageSize) {
+// 	follow(client, root, [ {rel: 'headers', params: {size: pageSize}}])
+// 		.then(headerCollection => {
+// 			return client({
+// 				method: 'GET',
+// 				path: headerCollection.entity._links.profile.href,
+// 				headers: {'Accept': 'application/schema+json'}
+// 			})
+// 				.then(schema => {
+// 					this.schema = schema.entity;
+// 					return headerCollection;
+// 				});
+// 		})
+// 		.done(headerCollection => {
+// 			this.setState({
+// 				headers: headerCollection.entity._embedded.headers,
+// 				attributes: Object.keys(this.schema.properties),
+// 				pageSize: pageSize,
+// 				links: headerCollection.entity._links});
+// 		});
+// }
 
 
 //
@@ -314,3 +337,104 @@ ReactDOM.render(
 // 	{/*{navLinks}*/}
 // </div>
 // </div>
+
+
+
+// function ShowCard () {
+//
+// 	const [open, setOpen] = useState(false);
+//
+// 	return (
+// 		<>
+// 			<Button
+// 				onClick={() => setOpen(!open)}
+// 				aria-controls="example-collapse-text"
+// 				aria-expanded={open}
+// 			>
+// 				click
+// 			</Button>
+//
+// 			<div style={{minHeight: '150px'}}>
+// 				<Collapse in={open} dimension="width">
+// 					<div id="example-collapse-text">
+// 						<Card body style={{width: '600px'}}>
+// 							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+// 							terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+// 							labore wes anderson cred nesciunt sapiente ea proident.
+// 						</Card>
+// 					</div>
+// 				</Collapse>
+// 			</div>
+// 		</>
+// 	);
+//
+// }
+
+
+
+
+//
+// const Input = styled.input`
+//   text-align: right;
+//   background-color: lightgray;
+//   width: 200px;
+//   margin-left: 15px;
+//
+//   &:hover {
+//       background-color: lightblue;
+//   }
+// `;
+//
+//
+// class Reservation extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			isGoing: true,
+// 			numberOfGuests: 2
+// 		};
+//
+// 		this.handleInputChange = this.handleInputChange.bind(this);
+// 	}
+//
+// 	handleInputChange(event) {
+// 		const target = event.target;
+// 		const value = target.type === 'checkbox' ? target.checked : target.value;
+// 		const name = target.name;
+// 		this.setState({
+// 			[name]: value    });
+// 	}
+//
+//
+//
+// 	render() {
+// 		return (
+// 			<form>
+// 				<label>
+// 					Is going:
+// 					<input
+// 						name="isGoing"
+// 						type="checkbox"
+// 						checked={this.state.isGoing}
+// 						onChange={this.handleInputChange}
+// 					/>
+// 				</label>
+// 				<br />
+// 				<label>
+// 					Number of guests:
+// 					<Input
+// 						name="numberOfGuests"
+// 						type="number"
+// 						value={this.state.numberOfGuests}
+// 						onChange={this.handleInputChange}
+// 					/>
+// 				</label>
+// 			</form>
+// 		);
+// 	}
+// }
+//
+
+
+
+
