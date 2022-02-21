@@ -1,14 +1,14 @@
 'use strict';
 
+const poly = require("@babel/polyfill");
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const when = require('when');
 const client = require('./client');
 const follow = require('./follow'); // function to hop multiple links by "rel"
 
-const poly = require("@babel/polyfill");
 
-import LogRocket from 'logrocket';
 
 
 import {useState} from 'react';
@@ -19,21 +19,11 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import Card from 'react-bootstrap/Card';
 
-
-
-import store from './todo/store';
 import { Provider } from 'react-redux';
-
-import AddTodoForm from './todo/AddTodoForm';
-import TodoList from './todo/TodoList';
-import TotalCompleteItems from './todo/TotalCompleteItems';
-
+import store from './store';
 
 
 const root = '/api';
-
-LogRocket.init('speibq/rshfin');
-
 
 class App extends React.Component {
 
@@ -47,10 +37,7 @@ class App extends React.Component {
 		return (
 			<Container className="p-3 fluid">
 				<Container className="p-5 mb-4 bg-light rounded-3">
-					<h1 className="header">RSHFIN testbench - V14</h1>
-					<AddTodoForm />
-					<TodoList />
-					<TotalCompleteItems />
+					<h1 className="header">RSHFIN testbench - V15 WSKT </h1>
 
 				</Container>
 			</Container>
@@ -63,9 +50,6 @@ class App extends React.Component {
 
 
 ReactDOM.render(
-
-
-	// <App />,
 
 	<React.StrictMode>
 		<Provider store={store}>

@@ -18,10 +18,6 @@
 	</properties>
 
 	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,59 +52,39 @@
 			<optional>true</optional>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>javax.xml.bind</groupId>-->
-<!--			<artifactId>jaxb-api</artifactId>-->
-<!--			<version>2.3.0</version>-->
-<!--		</dependency>-->
 
-		<!-- https://mvnrepository.com/artifact/com.github.eirslett/frontend-maven-plugin -->
-<!--		<dependency>-->
-<!--			<groupId>com.github.eirslett</groupId>-->
-<!--			<artifactId>frontend-maven-plugin</artifactId>-->
-<!--			<version>1.12.1</version>-->
-<!--		</dependency>-->
+		Websocket stuff
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>sockjs-client</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>stomp-websocket</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+
+
+
 
 	</dependencies>
 
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- tag::frontend-maven-plugin[] -->
-<!--				<plugin>-->
-<!--					<groupId>com.github.eirslett</groupId>-->
-<!--					<artifactId>frontend-maven-plugin</artifactId>-->
-<!--					<version>1.9.1</version>-->
-<!--					<configuration>-->
-<!--						<installDirectory>target</installDirectory>-->
-<!--						<nodeVersion>v16.13.2</nodeVersion>-->
-<!--						<npmVersion>8.3.2</npmVersion>-->
-<!--					</configuration>-->
-<!--					<executions>-->
-<!--						<execution>-->
-<!--							<id>install node and npm</id>-->
-<!--							<goals>-->
-<!--								<goal>install-node-and-npm</goal>-->
-<!--							</goals>-->
-<!--						</execution>-->
-<!--						<execution>-->
-<!--							<id>npm install</id>-->
-<!--							<goals>-->
-<!--								<goal>npm</goal>-->
-<!--							</goals>-->
-<!--							<configuration>-->
-<!--								<arguments>install</arguments>-->
-<!--							</configuration>-->
-<!--						</execution>-->
-<!--						<execution>-->
-<!--							<id>webpack build</id>-->
-<!--							<goals>-->
-<!--								<goal>webpack</goal>-->
-<!--							</goals>-->
-<!--						</execution>-->
-<!--					</executions>-->
-<!--				</plugin>-->
-				<!-- end::frontend-maven-plugin[] -->
+
 			</plugins>
 		</pluginManagement>
 
@@ -117,10 +93,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>com.github.eirslett</groupId>-->
-<!--				<artifactId>frontend-maven-plugin</artifactId>-->
-<!--			</plugin>-->
+
 		</plugins>
 	</build>
 
